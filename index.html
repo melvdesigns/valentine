@@ -1,46 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Be My Valentine 💌</title>
 
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-        background: #ffe6f0;
-        margin: 0;
-        height: 100vh;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-    h1 { color: #d63384; }
-    h2 { color: #ff4d6d; margin-bottom: 30px; }
+h1 {
+    color: white;
+    font-size: 2rem;
+}
 
-    button {
-        padding: 15px 30px;
-        font-size: 18px;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        margin: 10px;
-    }
+h2 {
+    color: white;
+    margin-bottom: 40px;
+}
 
-    .yes {
-        background-color: #ff4d6d;
-        color: white;
-    }
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
 
-    .no {
-        background-color: #6c757d;
-        color: white;
-        position: absolute;
-    }
+.yes {
+    background-color: #ff4d6d;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.no {
+    background-color: #444;
+    color: white;
+    position: absolute;
+    transition: left 0.2s ease, top 0.2s ease;
+}
 </style>
 </head>
 
@@ -55,7 +63,11 @@
 <script>
 const noBtn = document.getElementById("noBtn");
 
-// Move button randomly on tap (mobile) or click
+// Set initial position
+noBtn.style.left = "50%";
+noBtn.style.top = "65%";
+noBtn.style.transform = "translate(-50%, -50%)";
+
 function moveButton() {
     const maxX = window.innerWidth - noBtn.offsetWidth;
     const maxY = window.innerHeight - noBtn.offsetHeight;
@@ -65,15 +77,15 @@ function moveButton() {
 
     noBtn.style.left = randomX + "px";
     noBtn.style.top = randomY + "px";
+    noBtn.style.transform = "none";
 }
 
-// Works for mobile tap
+// Android-friendly: trigger BEFORE tap registers
 noBtn.addEventListener("touchstart", function(e) {
     e.preventDefault();
     moveButton();
 });
 
-// Works for mouse click
 noBtn.addEventListener("click", function(e) {
     e.preventDefault();
     moveButton();
@@ -81,12 +93,11 @@ noBtn.addEventListener("click", function(e) {
 
 function sayYes() {
     document.body.innerHTML = `
-        <h1 style="color:#ff4d6d;">Yay! 💖</h1>
-        <h2>You just made me the happiest person alive! 💕</h2>
+        <h1 style="color:white;margin-top:40vh;">Yay! 💖</h1>
+        <h2 style="color:white;">You just made me the happiest person alive! 💕</h2>
     `;
 }
 </script>
 
 </body>
 </html>
-

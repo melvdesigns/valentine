@@ -2,73 +2,117 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Be My Valentine 💌</title>
+<title>For You ❤️</title>
 
 <style>
 body {
     margin: 0;
     height: 100vh;
-    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
     font-family: Arial, sans-serif;
-    text-align: center;
     overflow: hidden;
+}
+
+/* FRONT PAGE */
+#frontPage {
+    height: 100vh;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
-h1 {
+#frontPage h1 {
     color: white;
     font-size: 2rem;
+    padding: 0 20px;
 }
 
-h2 {
-    color: white;
-    margin-bottom: 40px;
-}
-
-button {
+#frontPage button {
+    margin-top: 30px;
     padding: 15px 30px;
     font-size: 18px;
     border: none;
     border-radius: 12px;
+    background-color: #ff4d6d;
+    color: white;
     cursor: pointer;
-    transition: 0.2s ease;
+}
+
+/* VALENTINE PAGE */
+#valentinePage {
+    display: none;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    text-align: center;
+    padding-top: 80px;
+    position: relative;
+}
+
+#valentinePage h1 {
+    color: white;
+}
+
+#valentinePage h2 {
+    color: white;
 }
 
 .yes {
     background-color: #ff4d6d;
     color: white;
-    margin-bottom: 20px;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    margin: 20px;
 }
 
 .no {
     background-color: #444;
     color: white;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
     position: absolute;
-    transition: left 0.2s ease, top 0.2s ease;
 }
 </style>
 </head>
 
 <body>
 
-<h1>Billy Jen Montemayor ❤️</h1>
-<h2>Will you be my Valentine? 💌</h2>
+<!-- FRONT PAGE -->
+<div id="frontPage">
+    <h1>My tirang, baby, babi, lovey, mahal ❤️</h1>
+    <button onclick="goNext()">Next ➡️</button>
+</div>
 
-<button class="yes" onclick="sayYes()">Yes 💖</button>
-<button class="no" id="noBtn">No 💔</button>
+<!-- VALENTINE PAGE -->
+<div id="valentinePage">
+    <h1>Billy Jen Montemayor ❤️</h1>
+    <h2>Will you be my Valentine? 💌</h2>
+
+    <button class="yes" onclick="sayYes()">Yes 💖</button>
+    <button class="no" id="noBtn">No 💔</button>
+</div>
 
 <script>
-const noBtn = document.getElementById("noBtn");
+function goNext() {
+    document.getElementById("frontPage").style.display = "none";
+    document.getElementById("valentinePage").style.display = "block";
 
-// Set initial position
-noBtn.style.left = "50%";
-noBtn.style.top = "65%";
-noBtn.style.transform = "translate(-50%, -50%)";
+    // set initial No button position
+    const noBtn = document.getElementById("noBtn");
+    noBtn.style.left = "50%";
+    noBtn.style.top = "65%";
+    noBtn.style.transform = "translate(-50%, -50%)";
+}
 
+// Move No button infinitely
 function moveButton() {
+    const noBtn = document.getElementById("noBtn");
+
     const maxX = window.innerWidth - noBtn.offsetWidth;
     const maxY = window.innerHeight - noBtn.offsetHeight;
 
@@ -80,21 +124,27 @@ function moveButton() {
     noBtn.style.transform = "none";
 }
 
-// Android-friendly: trigger BEFORE tap registers
-noBtn.addEventListener("touchstart", function(e) {
-    e.preventDefault();
-    moveButton();
-});
+document.addEventListener("DOMContentLoaded", function() {
+    const noBtn = document.getElementById("noBtn");
 
-noBtn.addEventListener("click", function(e) {
-    e.preventDefault();
-    moveButton();
+    noBtn.addEventListener("touchstart", function(e) {
+        e.preventDefault();
+        moveButton();
+    });
+
+    noBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        moveButton();
+    });
 });
 
 function sayYes() {
     document.body.innerHTML = `
-        <h1 style="color:white;margin-top:40vh;">Yay! 💖</h1>
-        <h2 style="color:white;">You just made me the happiest person alive! 💕</h2>
+        <div style="height:100vh;background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+        display:flex;flex-direction:column;justify-content:center;align-items:center;">
+        <h1 style="color:white;">Yay! 💖</h1>
+        <h2 style="color:white;">You just made me the happiest person alive! iloveyyouuuu and imissyouuuu 🥹🥹💕</h2>
+        </div>
     `;
 }
 </script>
